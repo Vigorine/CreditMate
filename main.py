@@ -1,5 +1,5 @@
 import json
-from utils import clear, print_dict, update_json
+from utils import clear, print_dict, update_json, reset
 
 customer_data = {}
 with open("customer_data.json") as f:
@@ -87,8 +87,7 @@ def setup_customer():
 	monthly_income = int(input("Enter customer's monthly income: "))
 
 	if monthly_income < 600:
-		print("Monthly income is too low!")
-		clear()
+		reset("Monthly income is too low!")
 		return
 	
 	new_customer = {

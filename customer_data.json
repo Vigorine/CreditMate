@@ -1,26 +1,38 @@
 {
-	"Jack Cockall":{
-		"username": "jcockall",
-		"password": "h&A6T%%ha-'25FGm",
-		"address": "27 Apple Road, Street",
-		"phone_no": "44+7293002106",
-		"monthly_income": 750,
-		"credit_limit": 3600,
-		"current_credit_usage": 3000,
-		"withdrawals": [],
-		"deposits": [],
-		"fine": 0
-	},
-	"ash":{
-		"username": "asd",
-		"password": "h&A6T%%ha-'25FGm",
-		"address": "27 Apple Road, Street",
-		"phone_no": "44+7293002106",
-		"monthly_income": 750,
-		"credit_limit": 3600,
-		"current_credit_usage": 3000,
-		"withdrawals": [],
-		"deposits": [],
-		"fine": 0
-	}
+  "Jack Cockall": {
+    "username": "jcockall",
+    "password": "h&A6T%%ha-'25FGm",
+    "address": "27 Apple Road, Street",
+    "phone_no": "44+7293002106",
+    "monthly_income": 750,
+    "credit_limit": 3600,
+    "current_credit_usage": 3000,
+    "withdrawals": [],
+    "deposits": [],
+    "fine": 0
+  },
+  "ash": {
+    "username": "asd",
+    "password": "h&A6T%%ha-'25FGm",
+    "address": "27 Apple Road, Street",
+    "phone_no": "44+7293002106",
+    "monthly_income": 750,
+    "credit_limit": 3600,
+    "current_credit_usage": 3000,
+    "withdrawals": [],
+    "deposits": [],
+    "fine": 0
+  },
+  "Ash Ketchum": {
+    "username": "ashk86",
+    "password": "AshPikachu1996",
+    "address": "Pallet Town",
+    "phone_no": "2379872354",
+    "monthly_income": 1200,
+    "credit_limit": 5760.0,
+    "current_credit_usage": 0,
+    "withdrawals": [],
+    "deposits": [],
+    "fine": 0
+  }
 }
