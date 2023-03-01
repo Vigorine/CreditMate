@@ -1,5 +1,4 @@
 import json, os
-from main import login
 
 def clear():
 	cls = lambda: os.system("clear")
@@ -7,11 +6,6 @@ def clear():
 	print(""" __                           
 /   __ _  _| o _|_|V| _ _|_ _ 
 \__ | (/_(_| |  |_| |(_| |_(/_""" + "\n")
-
-def reset(msg):
-	clear()
-	print(msg)
-	login()
 
 def print_dict(dict):
 	for item, value in dict.items():
