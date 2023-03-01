@@ -1,5 +1,10 @@
 import json
-from utils import clear, print_dict, update_json, reset
+from utils import clear, print_dict, update_json
+
+def reset(msg):
+	clear()
+	print(msg)
+	login()
 
 customer_data = {}
 with open("customer_data.json") as f:
