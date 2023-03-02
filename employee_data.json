@@ -1,7 +1,12 @@
 {
-	"1":{
-		"name": "Jack Allcock",
-		"role": "manager",
-		"password": "1"
-	}
+  "1": {
+    "name": "Jack Allcock",
+    "role": "manager",
+    "password": "1"
+  },
+  "2": {
+    "name": "Allcock Jack",
+    "role": "employee",
+    "password": "1"
+  }
 }

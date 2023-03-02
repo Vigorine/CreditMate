@@ -1,10 +1,9 @@
-import json
+import json, time
 from utils import clear, print_dict, update_json
 
-def reset(msg):
+def reset():
 	clear()
-	print(msg)
-	login()
+	menu()
 
 customer_data = {}
 with open("customer_data.json") as f:
@@ -14,13 +13,16 @@ employee_data = {}
 with open("employee_data.json") as f:
 	employee_data = json.load(f)
 
-
-def login():
+def menu():
 	valid = ""
 	while valid.lower() != "employee" and valid.lower() != "customer":
 		clear()
 		valid = input("Are you trying to login as an 'employee' or 'customer'? ")
 	valid = valid.lower()
+	login(valid)
+
+
+def login(valid):
 
 	if valid == "employee":
 		id = input("Enter your employee ID: ")
@@ -34,6 +36,8 @@ def login():
 				clear()
 				print(f"Welcome {name} to the employee page!")
 				employee_menu(id)
+		time.sleep(2)
+		reset()
 
 	elif valid == "customer":
 		user = input("Enter username of account: ")
@@ -49,6 +53,8 @@ def login():
 				clear()
 				print(f"Welcome {index} to the customer page!")
 				customer_menu()
+		time.sleep(2)
+		reset()
 
 
 def employee_menu(id):
@@ -60,12 +66,14 @@ def employee_menu(id):
 				print_dict(customer)
 
 		signup_employee = ""
-		while signup_employee.lower() != "yes" and signup_employee.lower() != "no":
-			signup_employee = input("Do you wish to register an employee? ")
+		while signup_employee.lower() != "register" and signup_employee.lower() != "update" and signup_employee.lower() != "neither":
+			signup_employee = input("Do you wish to register or update a employee or neither? ")
 		signup_employee = signup_employee.lower()
-			
-		if signup_employee == "yes":
+
+		if signup_employee == "register":
 			setup_employee()
+		elif signup_employee == "update":
+			update_employee()
 		clear()
 		
 	signup_customer = ""
@@ -77,7 +85,7 @@ def employee_menu(id):
 		setup_customer()
 	elif signup_customer == "update":
 		update_customer()
-	clear()
+	reset()
 			
 def customer_menu():
 	pass
@@ -116,7 +124,9 @@ def setup_customer():
 def setup_employee():
 	employee_id = input("Enter employee's ID: ")
 	name = input("Enter employee's name: ")
-	role = input("Enter employee's role: ")
+	role = ""
+	while role.lower() != "manager" and role.lower() != "employee":
+		role = input("Enter employee's role: ")
 	password = input("Enter employee's password: ")
 	new_employee = {
 		employee_id: {
@@ -145,4 +155,4 @@ def deposit():
 	pass
 
 
-login()
+menu()
