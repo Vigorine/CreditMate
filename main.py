@@ -60,10 +60,14 @@ def login(valid):
 def employee_menu(id):
 	if employee_data[id]["role"] == "manager":
 		print("\nCustomers that are 20% or less within their credit limit:\n")
+		count = 0
 		for i in customer_data:
 			customer = customer_data[i]
 			if customer["credit_limit"] * 0.8 <= customer["current_credit_usage"]:
+				count += 1
 				print_dict(customer)
+		if count == 0:
+			print("There are no customers that are 20% or less within their credit limit.\n")
 
 		signup_employee = ""
 		while signup_employee.lower() != "register" and signup_employee.lower() != "update" and signup_employee.lower() != "neither":
@@ -86,10 +90,6 @@ def employee_menu(id):
 	elif signup_customer == "update":
 		update_customer()
 	reset()
-			
-def customer_menu():
-	pass
-
 
 def setup_customer():
 	name = input("Enter customer's name: ")
@@ -110,15 +110,15 @@ def setup_customer():
 			"address": address,
 			"phone_no": phone_no,
 			"monthly_income": monthly_income,
-			"credit_limit": (monthly_income*12)*0.4,
+			"credit_limit": round((monthly_income*12)*0.4),
 			"current_credit_usage": 0,
 			"withdrawals": [],
 			"deposits": [],
 			"fine": 0
 		}
 	}
-	
-	update_json("customer_data.json", customer_data, new_customer)
+	customer_data.update(new_customer)
+	update_json("customer_data.json", customer_data)
 
 
 def setup_employee():
@@ -135,15 +135,29 @@ def setup_employee():
 			"password": password
 		}
 	}
-	
-	update_json("employee_data.json", employee_data, new_employee)
+	employee_data.update(new_employee)
+	update_json("employee_data.json", employee_data)
 
 
 def update_customer():
-	pass
-
+	customer_name = input("Enter customer's name: ")
+	if customer_name in customer_data:
+		key = input("Enter key to change: ")
+		change = input("Enter new value: ")
+		customer_data[customer_name][key] = change
+		update_json("customer_data.json", customer_data)
 
 def update_employee():
+	employee_id = input("Enter employee's ID: ")
+	if employee_id in employee_data:
+		key = input("Enter key to change: ")
+		change = input("Enter new value: ")
+		employee_data[employee_id][key] = change
+		update_json("employee_data.json", employee_data)
+
+
+
+def customer_menu():
 	pass
 
 

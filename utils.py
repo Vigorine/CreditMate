@@ -12,7 +12,6 @@ def print_dict(dict):
 		print("{}: {}".format(item, value))
 	print()
 
-def update_json(file, data, new_data):
-	data.update(new_data)
+def update_json(file, data):
 	with open(file, "w") as f:
 	  json.dump(data, f, indent=2)
