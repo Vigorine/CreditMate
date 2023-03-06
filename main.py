@@ -52,7 +52,7 @@ def login(valid):
 			if customer_data[index]["password"] == password:
 				clear()
 				print(f"Welcome {index} to the customer page!")
-				customer_menu()
+				customer_menu(index)
 		time.sleep(2)
 		reset()
 
@@ -120,7 +120,6 @@ def setup_customer():
 	customer_data.update(new_customer)
 	update_json("customer_data.json", customer_data)
 
-
 def setup_employee():
 	employee_id = input("Enter employee's ID: ")
 	name = input("Enter employee's name: ")
@@ -137,7 +136,6 @@ def setup_employee():
 	}
 	employee_data.update(new_employee)
 	update_json("employee_data.json", employee_data)
-
 
 def update_customer():
 	customer_name = input("Enter customer's name: ")
@@ -156,16 +154,21 @@ def update_employee():
 		update_json("employee_data.json", employee_data)
 
 
+def customer_menu(index):
+	option = ""
+	while option.lower() != "withdraw" and option.lower() != "deposit":
+		clear()
+		option = input("Do you wish to withdraw or deposit? ")
+	option = option.lower()
+	if option == "withdraw":
+		withdraw(index)
+	elif option == "deposit":
+		deposit(index)
 
-def customer_menu():
+def withdraw(index):
 	pass
 
-
-def withdrawal():
-	pass
-
-
-def deposit():
+def deposit(index):
 	pass
 
 
