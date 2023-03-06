@@ -157,7 +157,6 @@ def update_employee():
 def customer_menu(index):
 	option = ""
 	while option.lower() != "withdraw" and option.lower() != "deposit":
-		clear()
 		option = input("Do you wish to withdraw or deposit? ")
 	option = option.lower()
 	if option == "withdraw":
@@ -166,10 +165,46 @@ def customer_menu(index):
 		deposit(index)
 
 def withdraw(index):
-	pass
+	if customer_data[index]["current_credit_usage"] >= customer_data[index]["credit_limit"]:
+		return print("You are at/over your credit limit!")
+	withdrawal = -1
+	while withdrawal < 0 or withdrawal > customer_data[index]["credit_limit"] * 0.2 or withdrawal > 1000:
+		withdrawal = int(input("Enter amount to withdraw: "))
+	customer_data[index]["current_credit_usage"] += withdrawal
+	if customer_data[index]["current_credit_usage"] > customer_data[index]["credit_limit"]:
+		customer_data[index]["fine"] += 500
+		print(f"You have been fined £500 for going over credit")
+	credit = customer_data[index]["current_credit_usage"]
+	limit = customer_data[index]["credit_limit"]
+	print(f"\nYour credit usage has now gone up to: £{credit}\nYou are £{limit - credit} away from your limit.")
+	update_json("customer_data.json", customer_data)
+	time.sleep(5)
 
 def deposit(index):
-	pass
+	deposited = -1
+	while deposited < 0 or deposited > customer_data[index]["current_credit_usage"]:
+		deposited = int(input("Enter amount to deposit: "))
+	fine = customer_data[index]["fine"]
+	if fine > 0:
+		if deposited > fine:
+			customer_data[index]["fine"] = 0
+			deposited = deposited - fine
+			print(f"You no longer owe money")
+		elif deposited == fine:
+			customer_data[index]["fine"] = 0
+			deposited = 0
+			print(f"You no longer owe money")
+		else:
+			customer_data[index]["fine"] -= deposited
+			fine = customer_data[index]["fine"]
+			print(f"You are now only fined £{fine}")
+	else:
+		customer_data[index]["current_credit_usage"] -= deposited
+	credit = customer_data[index]["current_credit_usage"]
+	limit = customer_data[index]["credit_limit"]
+	print(f"\nYour credit usage has now gone down to: £{credit}\nYou are £{limit - credit} away from your limit.")
+	update_json("customer_data.json", customer_data)
+	time.sleep(5)
 
 
 menu()
